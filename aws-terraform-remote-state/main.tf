@@ -40,7 +40,6 @@ module "dynamodb_table_lock" {
   name         = var.dynamodb_table_name
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
-
   attributes = [{
     name = "LockID"
     type = "S"
@@ -83,14 +82,10 @@ module "iam_assumable_role_admin" {
   team        = var.team
 
   custom_role_trust_policy = data.aws_iam_policy_document.trust.json
-
-  create_role             = true
-  create_instance_profile = false
-
-  role_name         = var.iam_role_name
-  role_requires_mfa = false
-
-  attach_admin_policy = true
-
-  tags = { Role = "Terraform Admin" }
+  create_role              = true
+  create_instance_profile  = false
+  role_name                = var.iam_role_name
+  role_requires_mfa        = false
+  attach_admin_policy      = true
+  tags                     = { Role = "Terraform Admin" }
 }
