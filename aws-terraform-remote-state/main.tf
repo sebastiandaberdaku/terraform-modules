@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "trust" {
 
 
 module "iam_assumable_role_admin" {
-  source = "git@github.com:CardoAI/infrastructure-terraform-modules.git//modules/iam/iam-assumable-role?ref=iam/iam-assumable-role/v1.0.0"
+  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-iam/assumable-role"
 
   company     = var.company
   environment = var.environment
