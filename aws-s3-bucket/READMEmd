@@ -1,6 +1,0 @@
-# aws-s3-bucket
-
-This Terraform module extends the well-known "terraform-aws-modules/s3-bucket/aws" module by enforcing a prefix-based
-naming convention and tagging.
-
-The module will also merge and apply multiple bucket policy documents if provided.
