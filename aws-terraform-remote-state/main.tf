@@ -92,7 +92,5 @@ module "iam_assumable_role_admin" {
 
   attach_admin_policy = true
 
-  tags = {
-    Role = "Admin"
-  }
+  tags = { Role = "Terraform Admin" }
 }
