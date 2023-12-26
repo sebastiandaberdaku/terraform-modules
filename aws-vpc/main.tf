@@ -8,6 +8,9 @@ module "prefix_and_tags" {
 
 locals {
   vpc_name = "${module.prefix_and_tags.qualified_prefix}-vpc-${var.name}"
+
+  default_security_group_base_name = (var.default_security_group_name == null) || (var.default_security_group_name == "") ? "default-vpc-${var.name}" : var.default_security_group_name
+  default_security_group_name = "${module.prefix_and_tags.qualified_prefix}-sg-${local.default_security_group_base_name}"
 }
 
 
@@ -183,7 +186,7 @@ module "vpc" {
   default_vpc_tags                 = var.default_vpc_tags
 
   manage_default_security_group  = var.manage_default_security_group
-  default_security_group_name    = var.default_security_group_name
+  default_security_group_name    = local.default_security_group_name
   default_security_group_ingress = var.default_security_group_ingress
   default_security_group_egress  = var.default_security_group_egress
   default_security_group_tags    = var.default_security_group_tags
