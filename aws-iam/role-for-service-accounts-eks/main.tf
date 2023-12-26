@@ -8,10 +8,10 @@ module "prefix_and_tags" {
 
 locals {
   has_prefix       = (var.role_name_prefix != null) && (var.role_name_prefix != "")
-  role_name        = local.has_prefix ? null : "${module.prefix_and_tags.qualified_prefix}-irsa-eks-${var.eks_cluster_base_name}-${var.role_name}"
-  role_name_prefix = local.has_prefix ? "${module.prefix_and_tags.qualified_prefix}-irsa-eks-${var.eks_cluster_base_name}-${var.role_name_prefix}" : null
+  role_name        = local.has_prefix ? null : "${module.prefix_and_tags.qualified_prefix}-irsa-eks-cl-${var.eks_cluster_base_name}-${var.role_name}"
+  role_name_prefix = local.has_prefix ? "${module.prefix_and_tags.qualified_prefix}-irsa-eks-cl-${var.eks_cluster_base_name}-${var.role_name_prefix}" : null
 
-  policy_name_prefix = "${module.prefix_and_tags.qualified_prefix}-iam-policy-eks"
+  policy_name_prefix = "${module.prefix_and_tags.qualified_prefix}-iam-policy-eks-cl-${var.eks_cluster_base_name}"
 }
 
 module "iam_role_for_service_accounts_eks" {
