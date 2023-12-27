@@ -1,5 +1,5 @@
 module "prefix_and_tags" {
-  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//prefix-and-tags"
+  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//prefix-and-tags?ref=prefix-and-tags/v1.0.0"
 
   company     = var.company
   environment = var.environment
