@@ -82,7 +82,7 @@ resource "helm_release" "karpenter" {
   name        = "karpenter"
   repository  = "oci://public.ecr.aws/karpenter"
   chart       = "karpenter"
-  version     = var.helm_chart_version
+  version     = var.karpenter_helm_chart_version
   max_history = 3
   timeout     = 900
 
@@ -187,29 +187,17 @@ resource "helm_release" "karpenter" {
   }
 }
 
-locals {
-  karpenter_extra_chart_path = "${path.module}/karpenter-extra"
-  karpenter_extra_hashes = {
-    for path in sort(fileset(local.karpenter_extra_chart_path, "**")) :
-    path => filebase64sha512("${local.karpenter_extra_chart_path}/${path}")
-  }
-  karpenter_extra_hash = base64sha512(jsonencode(local.karpenter_extra_hashes))
-}
-
 resource "helm_release" "karpenter_extra" {
   count        = var.create ? 1 : 0
   depends_on   = [helm_release.karpenter]
-  name         = "karpenter-extra"
-  chart        = local.karpenter_extra_chart_path
-  namespace    = var.namespace
-  max_history  = 3
-  timeout      = 900
-  reset_values = true
 
-  set {
-    name  = "templatesHash"
-    value = local.karpenter_extra_hash
-  }
+  name        = "karpenter-extra"
+  namespace   = var.namespace
+  repository  = "https://sebastiandaberdaku.github.io/charts"
+  chart       = "karpenter-extra"
+  version     = var.karpenter_extra_helm_chart_version
+  max_history = 3
+  timeout     = 900
 
   set {
     name  = "eksClusterName"

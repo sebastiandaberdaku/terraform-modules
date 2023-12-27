@@ -286,10 +286,16 @@ variable "rule_name_prefix" {
 ################################################################################
 # HELM Release
 ################################################################################
-variable "helm_chart_version" {
-  description = "The Helm Chart version to install"
+variable "karpenter_helm_chart_version" {
+  description = "The Karpenter Helm Chart version to install"
   type        = string
-  default     = null
+  default     = "v0.33.1"
+}
+
+variable "karpenter_extra_helm_chart_version" {
+  description = "The Karpenter Extra Helm Chart version to install"
+  type        = string
+  default     = "1.0.0"
 }
 
 variable "cluster_endpoint" {
