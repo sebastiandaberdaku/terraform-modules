@@ -13,7 +13,7 @@ locals {
 }
 
 module "s3_backend" {
-  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-s3-bucket"
+  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-s3-bucket?ref=aws-s3-bucket/v1.0.0"
 
   company     = var.company
   environment = var.environment
@@ -31,7 +31,7 @@ module "s3_backend" {
 }
 
 module "dynamodb_table_lock" {
-  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-dynamodb-table"
+  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-dynamodb-table?ref=aws-dynamodb-table/v1.0.0"
 
   company     = var.company
   environment = var.environment
@@ -75,7 +75,7 @@ data "aws_iam_policy_document" "trust" {
 
 
 module "iam_assumable_role_admin" {
-  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-iam/assumable-role"
+  source = "git@github.com:sebastiandaberdaku/terraform-modules.git//aws-iam/assumable-role?ref=aws-iam/assumable-role/v1.0.0"
 
   company     = var.company
   environment = var.environment
