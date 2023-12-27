@@ -1,0 +1,24 @@
+redis-ha:
+  enabled: true
+
+controller:
+  enableStatefulSet: true
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+dex:
+  enabled: false
+
+configs:
+  cm:
+    #use annotation for tracking but keep labels for compatibility with other tools
+    application.resourceTrackingMethod: annotation+label
+    

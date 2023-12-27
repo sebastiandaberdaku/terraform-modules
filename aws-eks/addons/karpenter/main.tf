@@ -188,8 +188,8 @@ resource "helm_release" "karpenter" {
 }
 
 resource "helm_release" "karpenter_extra" {
-  count        = var.create ? 1 : 0
-  depends_on   = [helm_release.karpenter]
+  count      = var.create ? 1 : 0
+  depends_on = [helm_release.karpenter]
 
   name        = "karpenter-extra"
   namespace   = var.namespace
